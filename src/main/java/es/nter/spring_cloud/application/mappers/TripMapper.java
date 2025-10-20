@@ -1,7 +1,5 @@
 package es.nter.spring_cloud.application.mappers;
 
-import es.nter.spring_cloud.application.services.ClientService;
-import es.nter.spring_cloud.persistence.entities.ClientTrip;
 import es.nter.spring_cloud.persistence.entities.Trip;
 import es.nter.spring_cloud.presentation.dto.trip.TripInDto;
 import es.nter.spring_cloud.presentation.dto.trip.TripOutDto;
