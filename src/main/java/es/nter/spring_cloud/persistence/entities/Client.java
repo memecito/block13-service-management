@@ -6,11 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Getter
 @Setter
-@Entity(name = "clients")
 @NoArgsConstructor
 @AllArgsConstructor
+
+@Entity
+@Table(name = "clients")
+
 public class Client {
 
     @Id
@@ -22,6 +28,9 @@ public class Client {
     private int age;
     private String email;
     private String phone;
+    private Boolean status = true;
 
+    @OneToMany(mappedBy = "client", orphanRemoval = true)
+    private Set<ClientTrip> trips = new LinkedHashSet<>();
 
 }

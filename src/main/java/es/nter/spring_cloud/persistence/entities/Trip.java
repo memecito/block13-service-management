@@ -7,11 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
 @Setter
-@Entity(name = "trips")
+@Entity
+@Table(name = "trips")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Trip {
@@ -28,9 +30,9 @@ public class Trip {
     private LocalDateTime arrivalDate;
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private TripStatus status= TripStatus.ONTIME;
+    private TripStatus status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id")
-    private Set<Client> passengers;
+    @OneToMany(mappedBy = "trip", orphanRemoval = true)
+    private Set<ClientTrip> clients = new LinkedHashSet<>();
+
 }

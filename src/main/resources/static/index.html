@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test de Mi API</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<h1>Probar mi API de Spring Boot</h1>
+
+<h2>Probar GET (Ej: /api/usuarios)</h2>
+<button id="btnGet">Obtener Usuarios</button>
+<h3>Respuesta:</h3>
+<pre id="respuestaGet">...</pre>
+
+<hr>
+<!--
+<h2>Probar POST (Ej: /api/usuarios)</h2>
+<input type="text" id="nombreUsuario" placeholder="Nombre del nuevo usuario">
+<button id="btnPost">Crear Usuario</button>
+<h3>Respuesta:</h3>
+<pre id="respuestaPost">...</pre>
+
+-->
+
+<a href="newClient.html"><btn class="btn danger">registro cliente</btn>
+
+
+<script>
+    // --- Script para el GET ---
+    document.getElementById('btnGet').addEventListener('click', async () => {
+        const output = document.getElementById('respuestaGet');
+        output.textContent = 'Cargando...';
+        try {
+            // Asegúrate de que la URL sea correcta (ej: /api/usuarios)
+            const response = await fetch('/clients');
+            if (!response.ok) throw new Error('Error: ' + response.status);
+            const data = await response.json();
+            output.textContent = JSON.stringify(data, null, 2); // Muestra el JSON bonito
+        } catch (error) {
+            output.textContent = error.message;
+        }
+    });
+
+    // --- Script para el POST ---
+    document.getElementById('btnPost').addEventListener('click', async () => {
+        const output = document.getElementById('respuestaPost');
+        const nombre = document.getElementById('nombreUsuario').value;
+        output.textContent = 'Enviando...';
+
+        try {
+            // Asegúrate de que la URL sea correcta (ej: /api/usuarios)
+            const response = await fetch('/api/usuarios', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ nombre: nombre }) // El objeto que espera tu API
+            });
+            if (!response.ok) throw new Error('Error: ' + response.status);
+            const data = await response.json();
+            output.textContent = JSON.stringify(data, null, 2);
+        } catch (error) {
+            output.textContent = error.message;
+        }
+    });
+</script>
+
+</body>
+</html>

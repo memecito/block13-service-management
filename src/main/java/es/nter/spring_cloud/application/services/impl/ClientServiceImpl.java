@@ -49,7 +49,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public void deleted(Long id) {
-        repository.delete(getById(id));
+        getById(id).setStatus(false);
 
     }
 }

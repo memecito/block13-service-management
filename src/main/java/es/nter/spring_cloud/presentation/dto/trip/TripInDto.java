@@ -2,10 +2,12 @@ package es.nter.spring_cloud.presentation.dto.trip;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 public final class TripInDto {
 
     @NotBlank(message = "origin required")

@@ -1,6 +1,10 @@
 package es.nter.spring_cloud.presentation.dto.trip;
 
+import es.nter.spring_cloud.persistence.entities.Client;
+import es.nter.spring_cloud.presentation.dto.client.ClientOutDtoMini;
+
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public record TripOutDto(
          long id,
@@ -8,6 +12,7 @@ public record TripOutDto(
          String destination,
          LocalDateTime departureDate,
          LocalDateTime arrivalDate,
-         String status
+         String status,
+         Set<ClientOutDtoMini> passengers
 ) {
 }
